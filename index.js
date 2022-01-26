@@ -3,7 +3,7 @@
 // tabel invoegen met standaard letterruimtes.
 
 // =============================
-// CONSTANTEN
+// CONSTANTEN EN STARTVARIABELEN
 // =============================
 
 // Array met karakters op basis van breedte
@@ -11,7 +11,7 @@
 const karakter1 = ["i", "j", "1", "!", ".", ","]
 const karakter2_5 = ["l", "t"]
 const karakter3 = [" "]
-const karakter3_5 = ["a", "b", "c", "d", "e", "f", "g", "h", "k", "l", "n", "o", "p", "q", "r", "s", "u", "v", "0", "2", "3", "4", "5", "6", "7", "8", "9", "?", "-"]
+const karakter3_5 = ["a", "b", "c", "d", "e", "f", "g", "h", "k", "n", "o", "p", "q", "r", "s", "u", "v", "0", "2", "3", "4", "5", "6", "7", "8", "9", "?", "-"]
 const karakter5 = ["&"]
 const karakter6 = ["m", "w"]
 
@@ -91,24 +91,96 @@ document.querySelector("#knopZin1Invoeren").addEventListener("click", function()
   // Als een karakter niet voorkomt in de arrays (lengte niet bekend is), komt er een popup met welk karakter onbekend is.
   for (i=0; i<zin1.length; i++) {
     if (karakter1.includes(zin1.charAt(i))) {
-      zin1Lengte += 1;
+      zin1Lengte += (1*penNib);
+      zin1Berekening += (1*penNib + " ");
     } else if (karakter2_5.includes(zin1.charAt(i))) {
-      zin1Lengte += 2.5;
+      zin1Lengte += (2.5*penNib);
+      zin1Berekening += (2.5*penNib + " ");
     } else if (karakter3.includes(zin1.charAt(i))) {
-      zin1Lengte += 3;
+      zin1Lengte += (3*penNib);
+      zin1Berekening += (3*penNib  + " ");
     } else if (karakter3_5.includes(zin1.charAt(i))) {
-      zin1Lengte += 3.5;
+      zin1Lengte += (3.5*penNib);
+      zin1Berekening += (3.5*penNib + " ");
     } else if (karakter5.includes(zin1.charAt(i))) {
-      zin1Lengte += 5;
+      zin1Lengte += (5*penNib);
+      zin1Berekening += (5*penNib + " ");
     } else if (karakter6.includes(zin1.charAt(i))) {
-      zin1Lengte += 6;
+      zin1Lengte += (6*penNib);
+      zin1Berekening += (6*penNib + " ");
     } else {
       alert("De zin bevat karakter: [" + zin1.charAt(i) + "] . Daarvoor is geen lengte ingevoerd.")
     }
   }
 
-  // Vermenigvuldig zinlengte met gekozen pen nib
-  zin1Lengte *= penNib;
+  // for (i=0; i<zin1.length; i++) {
+  //   switch (zin1.charAt(i)) {
+  //     // karakters met strokebreedte 1
+  //     case "i":
+  //     case "j":
+  //     case "1":
+  //     case "!":
+  //     case ".":
+  //     case ",":
+  //       zin1Lengte += (1*penNib);
+  //       zin1Berekening += (1*penNib + " ");
+  //       break;
+  //     // karakters met strokebreedte 2.5
+  //     case "l":
+  //     case "t":
+  //       zin1Lengte += (2.5*penNib);
+  //       zin1Berekening += (2.5*penNib + " ");
+  //       break;
+  //     // karakters met strokebreedte 3
+  //     case " ":
+  //       zin1Lengte += (3*penNib);
+  //       zin1Berekening += (3*penNib  + " ");
+  //       break;
+  //     // karakters met strokebreedte 3.5
+  //     case "a":
+  //     case "b":
+  //     case "c":
+  //     case "d":
+  //     case "e":
+  //     case "f":
+  //     case "g":
+  //     case "h":
+  //     case "k":
+  //     case "n":
+  //     case "o":
+  //     case "p":
+  //     case "q":
+  //     case "r":
+  //     case "s":
+  //     case "u":
+  //     case "v":
+  //     case "0":
+  //     case "2":
+  //     case "3":
+  //     case "4":
+  //     case "5":
+  //     case "6":
+  //     case "7":
+  //     case "8":
+  //     case "9":
+  //     case "?":
+  //     case "-":
+  //       zin1Lengte += (3.5*penNib);
+  //       zin1Berekening += (3.5*penNib + " ");
+  //       break;
+  //     case "&":
+  //       zin1Lengte += (5*penNib);
+  //       zin1Berekening += (5*penNib + " ");
+  //       break;
+  //     case "m":
+  //     case "w":
+  //       zin1Lengte += (6*penNib);
+  //       zin1Berekening += (6*penNib + " ");
+  //       break;
+  //     default:
+  //       alert("karakter [" + zin1.charAt(i) + "] heeft geen strokebreedte. De berekening is onvolledig.");
+  //   }
+  // }
 
   // Voeg letter ruimte toe (# karakters -1) * letterRuimte
   zin1LetterRuimte = letterRuimte * (zin1.length - 1);
