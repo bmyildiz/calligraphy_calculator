@@ -1,3 +1,11 @@
+// NOTES
+// maak letterruimte apart invulbaar, ipv bepaald door de nib selectie zoals nu
+// tabel invoegen met standaard letterruimtes.
+
+// =============================
+// CONSTANTEN
+// =============================
+
 // Array met karakters op basis van breedte
 // Getal na array naam = aantal strokes per character
 const karakter1 = ["i", "j", "1", "!", ".", ","]
@@ -17,7 +25,7 @@ const speedballC4 = 1
 // Standaard geselecteerde pen nib (C-2)
 let penNib = speedballC2
 
-// Ruimte in strokes tussen karakters (ook spaties)
+// Ruimte in strokes tussen karakters (ook spaties) in mm
 let letterRuimte = 1
 
 // Spatie = aantal strokes tussen woorden
@@ -28,6 +36,18 @@ let zin1 = ""
 
 // Lengte van zin 1
 let zin1Lengte = 0
+
+// =============================
+// BEREKENINGEN
+// =============================
+
+document.querySelector("#knopFormInvoeren").addEventListener("click", function() {
+  // Zoek op in formulier wat de ingevulde absolute letterruimte is
+  letterRuimte = document.querySelector("#ingevoerdeLetterRuimte").valueAsNumber
+
+  // Vul de ingevulde letterruimte in als Letter ruimte op de pagina
+  document.querySelector("#zin1LetterRuimte").textContent = letterRuimte
+})
 
 document.querySelector("#knopZin1Invoeren").addEventListener("click", function() {
   // Reset zinlengte
@@ -66,10 +86,10 @@ document.querySelector("#knopZin1Invoeren").addEventListener("click", function()
       zin1Lengte += 1;
     } else if (karakter2_5.includes(zin1.charAt(i))) {
       zin1Lengte += 2.5;
+    } else if (karakter3.includes(zin1.charAt(i))) {
+      zin1Lengte += 3;
     } else if (karakter3_5.includes(zin1.charAt(i))) {
       zin1Lengte += 3.5;
-    } else if (karakter4.includes(zin1.charAt(i))) {
-      zin1Lengte += 4;
     } else if (karakter5.includes(zin1.charAt(i))) {
       zin1Lengte += 5;
     } else if (karakter6.includes(zin1.charAt(i))) {
@@ -82,7 +102,14 @@ document.querySelector("#knopZin1Invoeren").addEventListener("click", function()
   // Vermenigvuldig zinlengte met gekozen pen nib
   zin1Lengte *= penNib;
 
+  // Voeg letter ruimte toe (# karakters -1) * letterRuimte
+  let zin1LetterRuimte = letterRuimte * (zin1.length - 1)
+
+  zin1Lengte += zin1LetterRuimte;
+
   // Voer de berekende zinslengte in als Lengte
   document.querySelector("#zin1Lengte").textContent = zin1Lengte;
 
+  // Voer de helft van de berekende zinslengte in als 1/2 lengte
+  document.querySelector("#zin1LengteHalf").textContent = (zin1Lengte*0.5);
 });

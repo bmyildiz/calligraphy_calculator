@@ -11,7 +11,40 @@
 
     <h1>Kalligrafie calculator</h1>
     <h2>Blackletter</h2>
-    <h3>Speedball C-2 nib</h3>
+
+    <h3>Letter ruimte standaard (in mm)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th align="left">Pen nib</th>
+          <th align="right">Ruimte [mm]</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Speedball C-0</td>
+          <td align="right">4</td>
+        </tr>
+        <tr>
+          <td>Speedball C-1</td>
+          <td align="right">3</td>
+        </tr>
+        <tr>
+          <td>Speedball C-2</td>
+          <td align="right">2.5</td>
+        </tr>
+        <tr>
+          <td>Speedball C-3</td>
+          <td align="right">2</td>
+        </tr>
+        <tr>
+          <td>Speedball C-4</td>
+          <td align="right">1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Pen nib</strong></p>
 
     <!-- Dropdown lijst om pen nib te selecteren -->
     <!-- Speedball C2 is standaard actief -->
@@ -22,6 +55,13 @@
       <option value="speedballC3">Speedball C3</option>
       <option value="speedballC4">Speedball C4</option>
     </select>
+
+    <p><strong>Eigenschappen tekst</strong></p>
+    <form class="" action="index.html" method="post">
+      <label>Ruimte tussen letters:</label>
+      <input id="ingevoerdeLetterRuimte" type="number" name="" value="">
+      <input id="knopFormInvoeren" type="button" name="" value="Invoeren">
+    </form>
 
     <p><strong>Zin 1</strong>
       <button id="knopZin1Invoeren" type="button" name="zin1Invoeren">Zin 1 invoeren</button>
@@ -38,6 +78,14 @@
       <tr>
         <td>Lengte:</td>
         <td id="zin1Lengte"></td>
+      </tr>
+      <tr>
+        <td>1/2 lengte:</td>
+        <td id="zin1LengteHalf"></td>
+      </tr>
+      <tr>
+        <td>Letter ruimte:</td>
+        <td id="zin1LetterRuimte"></td>
       </tr>
     </table>
 
