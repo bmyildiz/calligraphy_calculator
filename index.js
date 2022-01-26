@@ -1,6 +1,8 @@
 // NOTES
-// maak letterruimte apart invulbaar, ipv bepaald door de nib selectie zoals nu
-// tabel invoegen met standaard letterruimtes.
+// Nettere printout maken, mogelijk via objects
+
+// HTML toevoegen ipv vervangen bij iedere berekening
+
 
 // =============================
 // CONSTANTEN EN STARTVARIABELEN
@@ -40,21 +42,22 @@ let zin1Berekening = ""
 // BEREKENINGEN
 // =============================
 
-document.querySelector("#knopFormInvoeren").addEventListener("click", function() {
-  // Zoek op in formulier wat de ingevulde absolute letterruimte is
-  letterRuimte = document.querySelector("#ingevoerdeLetterRuimte").valueAsNumber
-
-  // Vul de ingevulde letterruimte in als Letter ruimte op de pagina
-  document.querySelector("#zin1LetterRuimte").textContent = letterRuimte
-})
-
-document.querySelector("#knopZin1Invoeren").addEventListener("click", function() {
+document.querySelector("#knopZinBerekenen").addEventListener("click", function() {
   // Reset zinlengte en berekening
   zin1Lengte = 0;
   zin1Berekening = "";
 
+  // Zoek op in formulier wat de ingevulde absolute letterruimte is
+  letterRuimte = document.querySelector("#formLetterafstand").valueAsNumber;
+
+  // Vul de ingevulde letterruimte in als Letter ruimte op de pagina
+  document.querySelector("#zin1LetterRuimte").textContent = letterRuimte;
+
   // Slaat geselecteerde pen nib op
-  let penNibKeuze = document.querySelector("#penNibSelectie").value
+  let penNibKeuze = document.querySelector("#formPenNibSelectie").value
+
+  // Vul Pen Nib in bij HTML output
+  document.querySelector("#zin1PenNib").textContent = penNibKeuze;
 
   // Match stroke breedte multiplier aan pen nib keuze
   switch (penNibKeuze) {
@@ -78,7 +81,10 @@ document.querySelector("#knopZin1Invoeren").addEventListener("click", function()
   }
 
   // Deze prompt slaat de te berekenen zin op als zin1
-  zin1 = prompt("Wat is zin 1?");
+  // zin1 = prompt("Wat is zin 1?");
+
+  // Sla ingevulde tekst op als Zin1
+  zin1 = document.querySelector("#formZin").value;
 
   // Vul de ingevoerde zin in als Tekst
   document.querySelector("#zin1Tekst").textContent = zin1;

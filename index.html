@@ -12,12 +12,12 @@
     <h1>Kalligrafie calculator</h1>
     <h2>Blackletter</h2>
 
-    <h3>Letter ruimte standaard (in mm)</h3>
+    <h3>Letter maten standaard (in mm)</h3>
     <table>
       <thead>
         <tr>
           <th align="left">Pen nib</th>
-          <th>Letter ruimte [mm]</th>
+          <th>Letterafstand [mm]</th>
           <th>Stroke breedte [mm]</th>
         </tr>
       </thead>
@@ -50,32 +50,50 @@
       </tbody>
     </table>
 
-    <p><strong>Pen nib</strong></p>
+    <h3>Bereken zin</h3>
 
-    <!-- Dropdown lijst om pen nib te selecteren -->
-    <!-- Speedball C2 is standaard actief -->
-    <select class="" id="penNibSelectie">
-      <option value="speedballC0">Speedball C0</option>
-      <option value="speedballC1">Speedball C1</option>
-      <option value="speedballC2" selected>Speedball C2</option>
-      <option value="speedballC3">Speedball C3</option>
-      <option value="speedballC4">Speedball C4</option>
-    </select>
-
-    <p><strong>Eigenschappen tekst</strong></p>
     <form class="" action="index.html" method="post">
-      <label>Ruimte tussen letters:</label>
-      <input id="ingevoerdeLetterRuimte" type="number" name="" value="">
-      <input id="knopFormInvoeren" type="button" name="" value="Invoeren">
+      <table>
+        <tr>
+          <td><label for="formZin">Zin:</label></td>
+          <td><input type="text" name="formZin" id="formZin"></td>
+        </tr>
+        <tr>
+          <td><label for="">Letterafstand [mm]:</label></td>
+          <td><input type="number" name="formLetterafstand" id="formLetterafstand"></td>
+        </tr>
+        <tr>
+          <td><label for="formPenNibSelectie">Pen nib selectie:</label></td>
+          <td>
+            <!-- Dropdown lijst om pen nib te selecteren -->
+            <!-- Speedball C2 is standaard actief -->
+            <select class="" id="formPenNibSelectie">
+              <option value="speedballC0">Speedball C0</option>
+              <option value="speedballC1">Speedball C1</option>
+              <option value="speedballC2" selected>Speedball C2</option>
+              <option value="speedballC3">Speedball C3</option>
+              <option value="speedballC4">Speedball C4</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <button id="knopZinBerekenen" type="button" name="knopZinBerekenen">Zin berekenen</button>
     </form>
 
-    <p><strong>Zin 1</strong>
-      <button id="knopZin1Invoeren" type="button" name="zin1Invoeren">Zin 1 invoeren</button>
-    </p>
+    <p><strong>Zin berekeningen</strong></p>
     <table>
       <tr>
         <td>Tekst:</td>
         <td id="zin1Tekst"></td>
+      </tr>
+      <tr>
+        <td>Pen nib:</td>
+        <td id="zin1PenNib"></td>
+      </tr>
+      <tr>
+        <td>Letter ruimte:</td>
+        <td id="zin1LetterRuimte"></td>
       </tr>
       <tr>
         <td>Aantal karakters:</td>
@@ -90,13 +108,10 @@
         <td id="zin1LengteHalf"></td>
       </tr>
       <tr>
-        <td>Letter ruimte:</td>
-        <td id="zin1LetterRuimte"></td>
+        <td>Lengte / karakter:</td>
+        <td id="zin1Berekening"></td>
       </tr>
     </table>
-
-    <p><strong>Berekening zin 1:</strong></p>
-    <p id="zin1Berekening"></p>
 
     <!-- Link naar JavaScript file -->
     <script src="index.js"></script>
