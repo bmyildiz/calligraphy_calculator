@@ -15,18 +15,13 @@ const karakter3_5 = ["a", "b", "c", "d", "e", "f", "g", "h", "k", "l", "n", "o",
 const karakter5 = ["&"]
 const karakter6 = ["m", "w"]
 
-// Stroke breedte multiplier per pen nib
-const speedballC0 = 3.5
-const speedballC1 = 2.5
-const speedballC2 = 2
-const speedballC3 = 1.5
-const speedballC4 = 1
-
 // Standaard geselecteerde pen nib (C-2)
-let penNib = speedballC2
+let penNib = 2
 
-// Ruimte in strokes tussen karakters (ook spaties) in mm
-let letterRuimte = 1
+// Ruimte in strokes tussen karakters (ook spaties) in mm (default 2.5 van C2 nib)
+let letterRuimte = 2.5
+
+let zin1LetterRuimte = 0
 
 // Spatie = aantal strokes tussen woorden
 let spatie = 3
@@ -36,6 +31,10 @@ let zin1 = ""
 
 // Lengte van zin 1
 let zin1Lengte = 0
+
+// Uitgeschreven berekening
+let zin1Berekening = ""
+
 
 // =============================
 // BEREKENINGEN
@@ -50,23 +49,32 @@ document.querySelector("#knopFormInvoeren").addEventListener("click", function()
 })
 
 document.querySelector("#knopZin1Invoeren").addEventListener("click", function() {
-  // Reset zinlengte
+  // Reset zinlengte en berekening
   zin1Lengte = 0;
+  zin1Berekening = "";
 
   // Slaat geselecteerde pen nib op
   let penNibKeuze = document.querySelector("#penNibSelectie").value
 
   // Match stroke breedte multiplier aan pen nib keuze
-  if (penNibKeuze === "speedballC0") {
-    penNib = speedballC0;
-  } else if (penNibKeuze === "speedballC1") {
-    penNib = speedballC1;
-  } else if (penNibKeuze === "speedballC2") {
-    penNib = speedballC2;
-  } else if (penNibKeuze === "speedballC3") {
-    penNib = speedballC3;
-  } else if (penNibKeuze === "speedballC4") {
-    penNib = speedballC4;
+  switch (penNibKeuze) {
+    case "speedballC0":
+      penNib = 3.5;
+      break;
+    case "speedballC1":
+      penNib = 2.5;
+      break;
+    case "speedballC2":
+      penNib = 2;
+      break;
+    case "speedballC3":
+      penNib = 1.5;
+      break;
+    case "speedballC4":
+      penNib = 1;
+      break;
+    default:
+      alert("Geen pen nib gekozen")
   }
 
   // Deze prompt slaat de te berekenen zin op als zin1
@@ -103,7 +111,7 @@ document.querySelector("#knopZin1Invoeren").addEventListener("click", function()
   zin1Lengte *= penNib;
 
   // Voeg letter ruimte toe (# karakters -1) * letterRuimte
-  let zin1LetterRuimte = letterRuimte * (zin1.length - 1)
+  zin1LetterRuimte = letterRuimte * (zin1.length - 1);
 
   zin1Lengte += zin1LetterRuimte;
 
@@ -112,4 +120,7 @@ document.querySelector("#knopZin1Invoeren").addEventListener("click", function()
 
   // Voer de helft van de berekende zinslengte in als 1/2 lengte
   document.querySelector("#zin1LengteHalf").textContent = (zin1Lengte*0.5);
+
+  // Toon berekening in HTML
+  document.querySelector("#zin1Berekening").textContent = zin1Berekening;
 });
