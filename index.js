@@ -17,6 +17,16 @@ const karakter3_5 = ["a", "b", "c", "d", "e", "f", "g", "h", "k", "n", "o", "p",
 const karakter5 = ["&"]
 const karakter6 = ["m", "w"]
 
+// Map met pen nib multiplier per nib
+const penNibMap = new Map();
+
+// Deze waarden staan als penNib multiplier ingesteld
+penNibMap.set("speedballC0", 3.5);
+penNibMap.set("speedballC1", 2.5);
+penNibMap.set("speedballC2", 2);
+penNibMap.set("speedballC3", 1.5);
+penNibMap.set("speedballC4", 1);
+
 // Standaard geselecteerde pen nib (C-2)
 let penNib = 2
 
@@ -36,6 +46,7 @@ let zin1Lengte = 0
 
 // Uitgeschreven berekening
 let zin1Berekening = ""
+
 
 
 // =============================
@@ -59,35 +70,11 @@ document.querySelector("#knopZinBerekenen").addEventListener("click", function()
   // Vul Pen Nib in bij HTML output
   document.querySelector("#zin1PenNib").textContent = penNibKeuze;
 
-  // Match stroke breedte multiplier aan pen nib keuze
-  switch (penNibKeuze) {
-    case "speedballC0":
-      penNib = 3.5;
-      break;
-    case "speedballC1":
-      penNib = 2.5;
-      break;
-    case "speedballC2":
-      penNib = 2;
-      break;
-    case "speedballC3":
-      penNib = 1.5;
-      break;
-    case "speedballC4":
-      penNib = 1;
-      break;
-    default:
-      alert("Geen pen nib gekozen")
-  }
-
-  // Deze prompt slaat de te berekenen zin op als zin1
-  // zin1 = prompt("Wat is zin 1?");
+  // Zoek penNibKeuze op in penNibMap en haal bijbehorende multiplier op
+  penNib = penNibMap.get(penNibKeuze);
 
   // Sla ingevulde tekst op als Zin1
   zin1 = document.querySelector("#formZin").value;
-
-  // Vul de ingevoerde zin in als Tekst
-  document.querySelector("#zin1Tekst").textContent = zin1;
 
   // Tel het aantal karakters in de zin en vul in als Aantal karakters
   document.querySelector("#zin1AantalKarakters").textContent = zin1.length;
@@ -118,75 +105,6 @@ document.querySelector("#knopZinBerekenen").addEventListener("click", function()
       alert("De zin bevat karakter: [" + zin1.charAt(i) + "] . Daarvoor is geen lengte ingevoerd.")
     }
   }
-
-  // for (i=0; i<zin1.length; i++) {
-  //   switch (zin1.charAt(i)) {
-  //     // karakters met strokebreedte 1
-  //     case "i":
-  //     case "j":
-  //     case "1":
-  //     case "!":
-  //     case ".":
-  //     case ",":
-  //       zin1Lengte += (1*penNib);
-  //       zin1Berekening += (1*penNib + " ");
-  //       break;
-  //     // karakters met strokebreedte 2.5
-  //     case "l":
-  //     case "t":
-  //       zin1Lengte += (2.5*penNib);
-  //       zin1Berekening += (2.5*penNib + " ");
-  //       break;
-  //     // karakters met strokebreedte 3
-  //     case " ":
-  //       zin1Lengte += (3*penNib);
-  //       zin1Berekening += (3*penNib  + " ");
-  //       break;
-  //     // karakters met strokebreedte 3.5
-  //     case "a":
-  //     case "b":
-  //     case "c":
-  //     case "d":
-  //     case "e":
-  //     case "f":
-  //     case "g":
-  //     case "h":
-  //     case "k":
-  //     case "n":
-  //     case "o":
-  //     case "p":
-  //     case "q":
-  //     case "r":
-  //     case "s":
-  //     case "u":
-  //     case "v":
-  //     case "0":
-  //     case "2":
-  //     case "3":
-  //     case "4":
-  //     case "5":
-  //     case "6":
-  //     case "7":
-  //     case "8":
-  //     case "9":
-  //     case "?":
-  //     case "-":
-  //       zin1Lengte += (3.5*penNib);
-  //       zin1Berekening += (3.5*penNib + " ");
-  //       break;
-  //     case "&":
-  //       zin1Lengte += (5*penNib);
-  //       zin1Berekening += (5*penNib + " ");
-  //       break;
-  //     case "m":
-  //     case "w":
-  //       zin1Lengte += (6*penNib);
-  //       zin1Berekening += (6*penNib + " ");
-  //       break;
-  //     default:
-  //       alert("karakter [" + zin1.charAt(i) + "] heeft geen strokebreedte. De berekening is onvolledig.");
-  //   }
-  // }
 
   // Voeg letter ruimte toe (# karakters -1) * letterRuimte
   zin1LetterRuimte = letterRuimte * (zin1.length - 1);
