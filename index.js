@@ -17,6 +17,34 @@ const karakter3_5 = ["a", "b", "c", "d", "e", "f", "g", "h", "k", "n", "o", "p",
 const karakter5 = ["&"]
 const karakter6 = ["m", "w"]
 
+// Map met karakters per stroke breedte
+const karakterMap = new Map();
+
+// Voeg alle karakters uit array toe aan karakter map met bijbehorende stroke breedte.
+for (let i = 0; i < karakter1.length; i++) {
+  karakterMap.set(karakter1[i], 1);
+}
+
+for (let i = 0; i < karakter2_5.length; i++) {
+  karakterMap.set(karakter2_5[i], 2.5);
+}
+
+for (let i = 0; i < karakter3.length; i++) {
+  karakterMap.set(karakter3[i], 3);
+}
+
+for (let i = 0; i < karakter3_5.length; i++) {
+  karakterMap.set(karakter3_5[i], 3.5);
+}
+
+for (let i = 0; i < karakter5.length; i++) {
+  karakterMap.set(karakter5[i], 5);
+}
+
+for (let i = 0; i < karakter6.length; i++) {
+  karakterMap.set(karakter6[i], 6);
+}
+
 // Map met pen nib multiplier per nib
 const penNibMap = new Map();
 
@@ -28,7 +56,7 @@ penNibMap.set("speedballC3", 1.5);
 penNibMap.set("speedballC4", 1);
 
 // Standaard geselecteerde pen nib (C-2)
-let penNib = 2
+let penNib = penNibMap.get("speedballC2")
 
 // Ruimte in strokes tussen karakters (ook spaties) in mm (default 2.5 van C2 nib)
 let letterRuimte = 2.5
@@ -79,32 +107,23 @@ document.querySelector("#knopZinBerekenen").addEventListener("click", function()
   // Tel het aantal karakters in de zin en vul in als Aantal karakters
   document.querySelector("#zin1AantalKarakters").textContent = zin1.length;
 
-  // Deze for loop zoekt ieder karakter uit de ingevoerde zin op
-  // Per karakter wordt de lengte opgeteld bij de zinslengte
-  // Als een karakter niet voorkomt in de arrays (lengte niet bekend is), komt er een popup met welk karakter onbekend is.
+  // Check of karakter uit zin voorkomt in karakterMap
+  // Ja:
+    // Zoekt ieder karakter uit de zin op in de karakterMap
+    // Neemt de stroke breedte van het karakter
+    // Telt dit op bij zin1Lengte
+    // Voegt dit toe aan uitgeschreven berekening
+  // Nee:
+    // Alert met welk karakter niet voorkomt in map
+
   for (i=0; i<zin1.length; i++) {
-    if (karakter1.includes(zin1.charAt(i))) {
-      zin1Lengte += (1*penNib);
-      zin1Berekening += (1*penNib + " ");
-    } else if (karakter2_5.includes(zin1.charAt(i))) {
-      zin1Lengte += (2.5*penNib);
-      zin1Berekening += (2.5*penNib + " ");
-    } else if (karakter3.includes(zin1.charAt(i))) {
-      zin1Lengte += (3*penNib);
-      zin1Berekening += (3*penNib  + " ");
-    } else if (karakter3_5.includes(zin1.charAt(i))) {
-      zin1Lengte += (3.5*penNib);
-      zin1Berekening += (3.5*penNib + " ");
-    } else if (karakter5.includes(zin1.charAt(i))) {
-      zin1Lengte += (5*penNib);
-      zin1Berekening += (5*penNib + " ");
-    } else if (karakter6.includes(zin1.charAt(i))) {
-      zin1Lengte += (6*penNib);
-      zin1Berekening += (6*penNib + " ");
+    if (karakterMap.has(zin1.charAt(i))) {
+      zin1Lengte += (karakterMap.get(zin1.charAt(i))*penNib);
+      zin1Berekening += (karakterMap.get(zin1.charAt(i))*penNib + " ");
     } else {
       alert("De zin bevat karakter: [" + zin1.charAt(i) + "] . Daarvoor is geen lengte ingevoerd.")
     }
-  }
+  };
 
   // Voeg letter ruimte toe (# karakters -1) * letterRuimte
   zin1LetterRuimte = letterRuimte * (zin1.length - 1);
