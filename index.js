@@ -81,31 +81,34 @@ let zin1Berekening = ""
 // BEREKENINGEN
 // =============================
 
-document.querySelector("#knopZinBerekenen").addEventListener("click", function() {
+$("#knopZinBerekenen").on("click", function() {
   // Reset zinlengte en berekening
   zin1Lengte = 0;
   zin1Berekening = "";
 
   // Zoek op in formulier wat de ingevulde absolute letterruimte is
-  letterRuimte = document.querySelector("#formLetterafstand").valueAsNumber;
+  letterRuimte = $("#formLetterafstand").val();
 
   // Vul de ingevulde letterruimte in als Letter ruimte op de pagina
-  document.querySelector("#zin1LetterRuimte").textContent = letterRuimte;
+  $("#zin1LetterRuimte").text(letterRuimte);
 
   // Slaat geselecteerde pen nib op
-  let penNibKeuze = document.querySelector("#formPenNibSelectie").value
+  let penNibKeuze = $("#formPenNibSelectie").val()
 
   // Vul Pen Nib in bij HTML output
-  document.querySelector("#zin1PenNib").textContent = penNibKeuze;
+  $("#zin1PenNib").text(penNibKeuze);
 
   // Zoek penNibKeuze op in penNibMap en haal bijbehorende multiplier op
   penNib = penNibMap.get(penNibKeuze);
 
   // Sla ingevulde tekst op als Zin1
-  zin1 = document.querySelector("#formZin").value;
+  zin1 = $("#formZin").val();
+
+  // Toon zin als zin tekst
+  $("#zin1Tekst").text(zin1);
 
   // Tel het aantal karakters in de zin en vul in als Aantal karakters
-  document.querySelector("#zin1AantalKarakters").textContent = zin1.length;
+  $("#zin1AantalKarakters").text(zin1.length);
 
   // Check of karakter uit zin voorkomt in karakterMap
   // Ja:
@@ -131,11 +134,11 @@ document.querySelector("#knopZinBerekenen").addEventListener("click", function()
   zin1Lengte += zin1LetterRuimte;
 
   // Voer de berekende zinslengte in als Lengte
-  document.querySelector("#zin1Lengte").textContent = zin1Lengte;
+  $("#zin1Lengte").text(zin1Lengte);
 
   // Voer de helft van de berekende zinslengte in als 1/2 lengte
-  document.querySelector("#zin1LengteHalf").textContent = (zin1Lengte*0.5);
+  $("#zin1LengteHalf").text(zin1Lengte*0.5);
 
   // Toon berekening in HTML
-  document.querySelector("#zin1Berekening").textContent = zin1Berekening;
+  $("#zin1Berekening").text(zin1Berekening);
 });
