@@ -1,0 +1,9 @@
+Functie: Output info is alles dat ik nodig heb voor review van tekst later.
+Kan het direct copy-pasten in Zettlr ontwerp pagina.
+
+Functie: berekende zin wordt toegevoegd aan HTML op de pagina, voor latere review.
+
+Functie: geadvanceerde instellingen die getoond en verborgen kunnen worden.
+Zoals aangepaste letter stroke breedte en ruimte tussen woorden.
+
+Functie: toon tekst op webpagina in gekozen lettertype
