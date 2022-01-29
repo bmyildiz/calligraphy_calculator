@@ -1,12 +1,10 @@
-// NOTES
-// Nettere printout maken, mogelijk via objects
-
-// HTML toevoegen ipv vervangen bij iedere berekening
-
-
-// =============================
+// ====================================================
 // CONSTANTEN EN STARTVARIABELEN
-// =============================
+// ====================================================
+
+// ----------------------------------------------------
+// KARAKTERS
+// ----------------------------------------------------
 
 // Array met karakters op basis van breedte
 // Getal na array naam = aantal strokes per character
@@ -45,6 +43,10 @@ for (let i = 0; i < karakter6.length; i++) {
   karakterMap.set(karakter6[i], 6);
 }
 
+// ----------------------------------------------------
+// PEN NIBS
+// ----------------------------------------------------
+
 // Map met pen nib multiplier per nib
 const penNibMap = new Map();
 
@@ -58,87 +60,82 @@ penNibMap.set("speedballC4", 1);
 // Standaard geselecteerde pen nib (C-2)
 let penNib = penNibMap.get("speedballC2")
 
+// ----------------------------------------------------
+// LETTER EN WOORD AFSTAND
+// ----------------------------------------------------
+
 // Ruimte in strokes tussen karakters (ook spaties) in mm (default 2.5 van C2 nib)
-let letterRuimte = 2.5
+let letterAfstand = 2.5
 
-let zin1LetterRuimte = 0
+let zinLetterAfstand = 0
 
-// Spatie = aantal strokes tussen woorden
-let spatie = 3
+// Tekst van zin
+let zin = ""
 
-// Tekst van zin 1
-let zin1 = ""
-
-// Lengte van zin 1
-let zin1Lengte = 0
+// Lengte van zin
+let zinLengte = 0
 
 // Uitgeschreven berekening
-let zin1Berekening = ""
+let zinBerekening = ""
 
 
 
-// =============================
+// ====================================================
 // BEREKENINGEN
-// =============================
+// ====================================================
+
+// ----------------------------------------------------
+// ZINSLENGTE BEREKENING VAN INGEVOERDE TEKST
+// ----------------------------------------------------
 
 $("#knopZinBerekenen").on("click", function() {
+  // ----------------------------------------------------
+  // VARIABELEN OPSLAAN UIT FORMULIER
+
   // Reset zinlengte en berekening
-  zin1Lengte = 0;
-  zin1Berekening = "";
+  zinLengte = 0;
+  zinBerekening = "";
 
-  // Zoek op in formulier wat de ingevulde absolute letterruimte is
-  letterRuimte = $("#formLetterafstand").val();
+  // Sla ingevulde waarden uit formulier op
+  zin = $("#formZin").val();
+  letterafstand = $("#formLetterafstand").val();
+  let penNibKeuze = $("#formPenNibSelectie").val();
 
-  // Vul de ingevulde letterruimte in als Letter ruimte op de pagina
-  $("#zin1LetterRuimte").text(letterRuimte);
-
-  // Slaat geselecteerde pen nib op
-  let penNibKeuze = $("#formPenNibSelectie").val()
-
-  // Vul Pen Nib in bij HTML output
-  $("#zin1PenNib").text(penNibKeuze);
+  // ----------------------------------------------------
+  // BEREKEN ZINSLENGTE
 
   // Zoek penNibKeuze op in penNibMap en haal bijbehorende multiplier op
   penNib = penNibMap.get(penNibKeuze);
-
-  // Sla ingevulde tekst op als Zin1
-  zin1 = $("#formZin").val();
-
-  // Toon zin als zin tekst
-  $("#zin1Tekst").text(zin1);
-
-  // Tel het aantal karakters in de zin en vul in als Aantal karakters
-  $("#zin1AantalKarakters").text(zin1.length);
 
   // Check of karakter uit zin voorkomt in karakterMap
   // Ja:
     // Zoekt ieder karakter uit de zin op in de karakterMap
     // Neemt de stroke breedte van het karakter
-    // Telt dit op bij zin1Lengte
+    // Telt dit op bij zinLengte
     // Voegt dit toe aan uitgeschreven berekening
   // Nee:
     // Alert met welk karakter niet voorkomt in map
 
-  for (i=0; i<zin1.length; i++) {
-    if (karakterMap.has(zin1.charAt(i))) {
-      zin1Lengte += (karakterMap.get(zin1.charAt(i))*penNib);
-      zin1Berekening += (karakterMap.get(zin1.charAt(i))*penNib + " ");
+  for (i=0; i<zin.length; i++) {
+    if (karakterMap.has(zin.charAt(i))) {
+      zinLengte += (karakterMap.get(zin.charAt(i))*penNib);
+      zinBerekening += (karakterMap.get(zin.charAt(i))*penNib + " ");
     } else {
-      alert("De zin bevat karakter: [" + zin1.charAt(i) + "] . Daarvoor is geen lengte ingevoerd.")
+      alert("De zin bevat karakter: [" + zin.charAt(i) + "] . Daarvoor is geen lengte ingevoerd.")
     }
   };
 
-  // Voeg letter ruimte toe (# karakters -1) * letterRuimte
-  zin1LetterRuimte = letterRuimte * (zin1.length - 1);
+  // Voeg letter ruimte toe (# karakters -1) * letterAfstand
+  zinLengte += letterafstand * (zin.length - 1);
 
-  zin1Lengte += zin1LetterRuimte;
+  // ----------------------------------------------------
+  // HTML OUTPUT
 
-  // Voer de berekende zinslengte in als Lengte
-  $("#zin1Lengte").text(zin1Lengte);
-
-  // Voer de helft van de berekende zinslengte in als 1/2 lengte
-  $("#zin1LengteHalf").text(zin1Lengte*0.5);
-
-  // Toon berekening in HTML
-  $("#zin1Berekening").text(zin1Berekening);
+  // Vul de zin eigenschappen en berekeningen in bij HTML output
+  $("#zinTekst").text(zin);
+  $("#zinPenNib").text(penNibKeuze);
+  $("#zinLetterafstand").text(letterafstand);
+  $("#zinLengte").text(zinLengte);
+  $("#zinLengteHalf").text(zinLengte*0.5);
+  $("#zinBerekening").text(zinBerekening);
 });

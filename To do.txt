@@ -1,3 +1,11 @@
+===========================================
+TO DO
+===========================================
+
+Refactoring: sla zin eigenschappen op in object ipv losse variablelen.
+
+Functie: Voeg hoofdletters toe aan karakter map
+
 Functie: Output info is alles dat ik nodig heb voor review van tekst later.
 Kan het direct copy-pasten in Zettlr ontwerp pagina.
 
@@ -7,3 +15,15 @@ Functie: geadvanceerde instellingen die getoond en verborgen kunnen worden.
 Zoals aangepaste letter stroke breedte en ruimte tussen woorden.
 
 Functie: toon tekst op webpagina in gekozen lettertype
+
+===========================================
+IN PROGRESS
+===========================================
+
+
+
+===========================================
+COMPLETED
+===========================================
+
+Refactoring: herschrijf ID's voor makkelijker lezen
