@@ -9,38 +9,35 @@
 // Array met karakters op basis van breedte
 // Getal na array naam = aantal strokes per character
 const karakter1 = ["i", "j", "1", "!", ".", ","]
-const karakter2_5 = ["l", "t"]
+const karakter2_5 = ["l", "t", "I"]
 const karakter3 = [" "]
 const karakter3_5 = ["a", "b", "c", "d", "e", "f", "g", "h", "k", "n", "o", "p", "q", "r", "s", "u", "v", "0", "2", "3", "4", "5", "6", "7", "8", "9", "?", "-"]
-const karakter5 = ["&"]
-const karakter6 = ["m", "w"]
+const karakter4_5 = ["U", "V", "W"]
+const karakter5 = ["&", "J"]
+const karakter5_5 = ["N", "X"]
+const karakter6 = ["m", "w", "B", "D", "E", "F", "H", "K", "L", "P", "R"]
+const karakter7 = ["A", "S", "W", "C", "T"]
+const karakter7_5 = ["M", "W"]
+const karakter8 = ["G", "O", "Q"]
+
+// Array met alle karakter arrays
+const karakters = [karakter1, karakter2_5, karakter3, karakter3_5, karakter4_5, karakter5, karakter5_5, karakter6, karakter7, karakter7_5, karakter8]
+
+// Stroke breedte van karakters per array
+const karakterBreedte = [1, 2.5, 3, 3.5, 4.5, 5, 5.5, 6, 7, 7.5, 8]
 
 // Map met karakters per stroke breedte
 const karakterMap = new Map();
 
-// Voeg alle karakters uit array toe aan karakter map met bijbehorende stroke breedte.
-for (let i = 0; i < karakter1.length; i++) {
-  karakterMap.set(karakter1[i], 1);
-}
-
-for (let i = 0; i < karakter2_5.length; i++) {
-  karakterMap.set(karakter2_5[i], 2.5);
-}
-
-for (let i = 0; i < karakter3.length; i++) {
-  karakterMap.set(karakter3[i], 3);
-}
-
-for (let i = 0; i < karakter3_5.length; i++) {
-  karakterMap.set(karakter3_5[i], 3.5);
-}
-
-for (let i = 0; i < karakter5.length; i++) {
-  karakterMap.set(karakter5[i], 5);
-}
-
-for (let i = 0; i < karakter6.length; i++) {
-  karakterMap.set(karakter6[i], 6);
+// Voor iedere karakter array
+// Kies karakterserie en bijbehorende breedte en sla op
+for (var e = 0; e < karakters.length; e++) {
+  let karakterArray = karakters[e];
+  let breedteArray = karakterBreedte[e];
+  // Voeg alle karakters uit array toe aan karakter map met bijbehorende stroke breedte.
+  for (var i = 0; i < karakterArray.length; i++) {
+    karakterMap.set(karakterArray[i], breedteArray);
+  }
 }
 
 // ----------------------------------------------------
@@ -77,8 +74,6 @@ let zinLengte = 0
 
 // Uitgeschreven berekening
 let zinBerekening = ""
-
-
 
 // ====================================================
 // BEREKENINGEN
